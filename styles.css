@@ -1,0 +1,16 @@
+.canvas{
+    width: 700px;
+    height: 650px;
+    background-color: lightblue;
+    margin-top: 20px;
+    position: relative;
+}
+
+#player{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    position: absolute;
+    bottom: 0px;
+    left: 250px;
+}
