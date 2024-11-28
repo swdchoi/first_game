@@ -1,9 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+
 .canvas{
-    width: 700px;
-    height: 650px;
+    width: 800px;
+    height: 800px;
     background-color: lightblue;
     margin-top: 20px;
     position: relative;
+    border: solid 100px;
+    left: 20%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #player{
@@ -12,5 +20,6 @@
     background-color: red;
     position: absolute;
     bottom: 0px;
-    left: 250px;
+    left: 2000px;
+    z-index: 0;
 }
