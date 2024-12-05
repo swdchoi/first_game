@@ -3,7 +3,7 @@ const canv = document.getElementById("canvas");
 const ending = document.getElementById("end");
 
 const movespeed = 100;
-
+let moveCount = 0;
 let playerXposition = 0;
 let playerYposition = 0;
 let enbot = 500;
@@ -12,6 +12,7 @@ let enbot1 = 500;
 let enleft1 = 500;
 let enfolbot = 500;
 let enfolleft = 500;
+
 
 ending.style.bottom = "500px";
 ending.style.left = "500px";
@@ -27,12 +28,15 @@ const playerWon = () => {
 const playerLost = () => {
 const enemyMan = document.getElementById("enemy");
 const enemyMan1 = document.getElementById("enemy1");
+const enemyFollow = document.getElementById("enemyfollow");
+
     if(player.style.bottom == enemyMan.style.bottom && player.style.left == enemyMan.style.left)
     {
         alert("GAME END!")
     } else if (player.style.bottom == enemyMan1.style.bottom && player.style.left == enemyMan1.style.left) {
-        alert("endgame")
-    }
+        alert("GG")
+    } else if (player.style.bottom == enemyFollow.style.bottom && player.style.left == enemyFollow.style.left) {
+        alert("GGRIP") }
 }
  
 const gridMaker = () => {
@@ -152,13 +156,13 @@ const thisenemyMovement2 = () => {
     console.log(playerYposition)
     console.log(enfolbot)
     if (enfolbot <= 550 && enfolleft >= 0 && enfolleft <= 500 && enfolbot >= 0){
-        if(playerXposition <= enfolbot) {
-            //enfolbot -= movespeed;
-        } else if (playerXposition >= enfolbot) {
+        if(playerYposition < enfolbot) {
+            enfolbot -= movespeed;
+        } else if (playerYposition > enfolbot) {
             enfolbot += movespeed;
-        } else if (playerYposition >= enfolleft) {
+        } else if (playerXposition > enfolleft) {
             enfolleft += movespeed;
-        } else if (playerYposition <= enfolleft) {
+        } else if (playerXposition < enfolleft) {
             enfolleft -= movespeed;
         }
     } else if (enfolbot > 550) {
@@ -198,15 +202,17 @@ if (playerXposition <= 550 && playerYposition >= 0 && playerYposition <= 500 && 
 
 player.style.bottom = `${playerYposition}px`;
 player.style.left = `${playerXposition}px`;
-//console.log(playerXposition);
 }
 
 document.addEventListener("keypress", (e) => {
     movement(e.key);
     thisenemyMovement();
+    if(moveCount%2 == 0){
     thisenemyMovement2();
+    }
     playerLost();
     playerWon();
+    moveCount += 1;
 })
 
 document.addEventListener("DOMContentLoaded", () => 
@@ -214,5 +220,6 @@ document.addEventListener("DOMContentLoaded", () =>
     enemyMaker(enemy);
     enemyMaker2(enemy);
     enemyMaker3(enemy);
+    moveCount = 0;
 })
 
