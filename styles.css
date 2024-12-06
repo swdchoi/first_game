@@ -1,5 +1,27 @@
 *{
     box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.bod{
+    display: flex;
+    justify-content: center;
+}
+
+.instruc{
+    width: 250px;
+    margin-top: 20px;
+    margin-right: 30px;
+    padding: 20px;
+    height: 350px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
 }
 
 .canvas{
@@ -7,9 +29,21 @@
     margin-top: 20px;
     position: relative;
     border: solid 100px;
-    left: 20%;
     display: flex;
     flex-wrap: wrap;
+}
+
+.levels{
+    width: 260px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 20px;
+    height: 350px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-radius: 15px;
 }
 
 #player{
@@ -31,3 +65,32 @@
     left: 500px;
     z-index: 1;
 }
+
+.inputarea {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input{
+    display: flex;
+}
+
+.levelbutt {
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: grey;
+}
+
+#canvsize {
+    border:solid;
+}
+
+#canvsizebtn {
+    color:white;
+    background-color: black;
+}
+

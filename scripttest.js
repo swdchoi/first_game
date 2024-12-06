@@ -9,7 +9,7 @@ let moveCount = 0;
 let playerXposition = 0;
 let playerYposition = 0;
 let canvasHeightWidth = 800;
-const movementRestrictions = canvasHeightWidth-300;
+let movementRestrictions = canvasHeightWidth-300;
 
 ending.style.bottom = `${movementRestrictions}px`;
 ending.style.left = `${movementRestrictions}px`;
@@ -51,16 +51,22 @@ enemyFollow.forEach((enemy) => {
 }
 
 const canvasMaker = () => {
-    canv.style.bottom = `${canvasHeightWidth}px`;
-    canv.style.left = `${canvasHeightWidth}px`;
+    canv.style.width = `${canvasHeightWidth}px`;
+    canv.style.height = `${canvasHeightWidth}px`;
 }
 
-const gridMaker = () => {
+const clearGrid = () => {
+    const grid = document.querySelectorAll(".grid");
+    grid.forEach((grid) => {
+        grid.remove();
+    });
+}
 
-
-
-    for(let i = 0; i <= 35; i++){
+const gridMaker = (num) => {
+let num2 = num*num
+    for(let i = 0; i <= num2-1; i++){
         let grid = document.createElement("div");
+        grid.className = "grid";
         grid.style.height = "100px";
         grid.style.width = "100px";
         grid.style.backgroundColor = "transparent";
@@ -99,8 +105,8 @@ const enemy = {
     height: "100px",
     width: "100px",
     color: "green",
-    positionY: "500px",
-    positionX: "500px",
+    positionY: `${canvasHeightWidth-300}px`,
+    positionX: `${canvasHeightWidth-300}px`,
 }
 
 const thisenemyMovement = () => {
@@ -195,6 +201,7 @@ player.style.left = `${playerXposition}px`;
 }
 
 document.addEventListener("keypress", (e) => {
+    if(e.key == "w" || e.key == "a" ||e.key == "s" || e.key == "d" ){
     movement(e.key);
     thisenemyMovement();
     if(moveCount%2 == 0){
@@ -205,12 +212,13 @@ document.addEventListener("keypress", (e) => {
     moveCount += 1;
     console.log(playerXposition)
     console.log(playerYposition)
+}
 })
 
 document.addEventListener("DOMContentLoaded", () => 
 {   
-
-    gridMaker();
+    canvasMaker();
+    gridMaker(6);
     enemyMaker(enemy);
     enemyMaker(enemy);
     enemyMaker2(enemy);
@@ -218,8 +226,13 @@ document.addEventListener("DOMContentLoaded", () =>
 })
 
 canvSizeBtn.addEventListener("click", () => {
-    canvasHeightWidth = (canvSize.value + 3)*100;
-    
+    const cansizenum = parseInt(canvSize.value)
+    canvasHeightWidth = (cansizenum + 3)*100;
+    movementRestrictions = canvasHeightWidth-300;
+    console.log(canvasHeightWidth);
+    clearGrid();
+    gridMaker(cansizenum + 1);
+    canvasMaker();
 })
 
 
