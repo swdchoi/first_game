@@ -3,6 +3,8 @@ const canv = document.getElementById("canvas");
 const ending = document.getElementById("end");
 const levelone = document.getElementById("levelone");
 const leveltwo = document.getElementById("leveltwo");
+const levelthree = document.getElementById("levelthree");
+const levelfour = document.getElementById("levelfour");
 //const canvSize = document.getElementById("canvsize");
 //const canvSizeBtn = document.getElementById("canvsizebtn");
 
@@ -13,6 +15,13 @@ let playerYposition = 0;
 let canvasHeightWidth = 800;
 let movementRestrictions = canvasHeightWidth-300;
 let level = 1;
+
+const playerPos = (x, y) => {
+    playerXposition = x;
+    playerYposition = y;
+    player.style.bottom = `${playerYposition}px`;
+    player.style.left = `${playerXposition}px`; 
+}
 
 const createEnd = () =>{
     ending.style.bottom = `${movementRestrictions}px`;
@@ -67,6 +76,20 @@ const clearGrid = () => {
     });
 }
 
+const clearMonst = () => {
+    const enemy1 = document.querySelectorAll(".enemy");
+    const enemy2 = document.querySelectorAll(".enemyfollow");
+
+    enemy1.forEach((enemy) => {
+        enemy.remove();
+    });
+
+    enemy2.forEach((enemy) => {
+        enemy.remove();
+    });
+
+}
+
 const gridMaker = (num) => {
 let num2 = num*num
     for(let i = 0; i <= num2-1; i++){
@@ -81,15 +104,15 @@ let num2 = num*num
         }
 }
 
-const enemyMaker = (obj) =>{
+const enemyMaker = (obj, posX, posY) =>{
     const em = document.createElement("div");
     em.className = "enemy";
     em.style.height = obj.height;
     em.style.width = obj.width;
     em.style.backgroundColor = obj.color;
     em.style.position = "absolute";
-    em.style.bottom = obj.positionY;
-    em.style.left = obj.positionX;
+    em.style.bottom = `${posY * 100}px`;
+    em.style.left = `${posX * 100}px`;
     canv.appendChild(em);
 }
 
@@ -205,15 +228,60 @@ player.style.bottom = `${playerYposition}px`;
 player.style.left = `${playerXposition}px`;
 }
 
+
 const levelCreate = (level) => {
     if(level==1){
-    const cansizenum = 3
+    clearGrid();
+    clearMonst();
+    const cansizenum = 2
     canvasHeightWidth = (cansizenum + 3)*100;
     movementRestrictions = canvasHeightWidth-300;
+    playerPos(0, 0);
     canvasMaker();
     gridMaker(cansizenum + 1);
     createEnd();
     moveCount = 0;
+    } 
+
+    else if (level == 2){
+    clearGrid();
+    clearMonst();
+    const cansizenum = 5
+    canvasHeightWidth = (cansizenum + 3)*100;
+    movementRestrictions = canvasHeightWidth-300;
+    playerPos(0, 0);
+    canvasMaker();
+    enemyMaker(enemy, 3, 3);
+    gridMaker(cansizenum + 1);
+    createEnd();
+    }
+
+    else if (level == 3) {
+        clearGrid();
+        clearMonst();
+        const cansizenum = 7
+        canvasHeightWidth = (cansizenum + 3)*100;
+        movementRestrictions = canvasHeightWidth-300;
+        playerPos(0, 0);
+        canvasMaker();
+        enemyMaker(enemy, 3, 3);
+        enemyMaker(enemy, 4, 4);
+        gridMaker(cansizenum + 1);
+        createEnd();
+    }
+
+    else if (level == 4) {
+        clearGrid();
+        clearMonst();
+        const cansizenum = 8
+        canvasHeightWidth = (cansizenum + 3)*100;
+        movementRestrictions = canvasHeightWidth-300;
+        playerPos(0, 0);
+        canvasMaker();
+        enemyMaker2(enemy, 4, 4);
+        enemyMaker(enemy, 3, 3);
+        gridMaker(cansizenum + 1);
+        createEnd();
     }
 }
 
@@ -227,14 +295,28 @@ document.addEventListener("keypress", (e) => {
     playerLost();
     playerWon();
     moveCount += 1;
-    console.log(playerXposition)
-    console.log(playerYposition)
 }
 })
 
 document.addEventListener("DOMContentLoaded", () => 
 {  levelCreate(level);
 })
+
+leveltwo.addEventListener("click", () => {
+    level = 2
+    levelCreate(level);
+})
+
+levelthree.addEventListener("click", () => {
+    level = 3
+    levelCreate(level);
+})
+
+levelfour.addEventListener("click", () => {
+    level = 4
+    levelCreate(level);
+})
+
 
 /*canvSizeBtn.addEventListener("click", () => {
     const cansizenum = parseInt(canvSize.value)
