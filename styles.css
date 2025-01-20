@@ -1,11 +1,13 @@
 *{
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    background-color: black;
 }
 
 .header {
     display: flex;
     justify-content: center;
+    color: white;
 }
 
 .bod{
@@ -25,12 +27,15 @@
 }
 
 .canvas{
-    background-color: white;
-    margin-top: 20px;
-    position: relative;
+    background-color: grey;
+    margin-top: 300px;
+    position: absolute;
     border: solid 100px;
     display: flex;
     flex-wrap: wrap;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .levels{
@@ -49,7 +54,6 @@
 #player{
     height: 100px;
     width: 100px;
-    background-color: red;
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -59,7 +63,8 @@
 #end {
     height: 100px;
     width: 100px;
-    background-color: blue;
+    background-image: url('images/other/7.png');
+    background-size: 100% 100%;
     position: absolute;
     bottom: 500px;
     left: 500px;
@@ -82,7 +87,8 @@
     width: 50px;
     font-size: 20px;
     border-radius: 5px;
-    color: grey;
+    color: black;
+    background-color: white;
 }
 
 #canvsize {
