@@ -15,20 +15,13 @@
     justify-content: center;
 }
 
-.instruc{
-    width: 250px;
-    margin-top: 20px;
-    margin-right: 30px;
-    padding: 20px;
-    height: 350px;
-    background-color: black;
-    color: white;
-    border-radius: 15px;
+.levels{
+    text-align: center;
 }
 
 .canvas{
     background-color: grey;
-    margin-top: 300px;
+    margin-top: 340px;
     position: absolute;
     border: solid 100px;
     display: flex;
@@ -36,19 +29,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.levels{
-    width: 260px;
-    margin-top: 20px;
-    margin-left: 30px;
-    padding: 20px;
-    height: 350px;
-    background-color: black;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    border-radius: 15px;
 }
 
 #player{
